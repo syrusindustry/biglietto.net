@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biglietto di Daniele Di Rollo</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <div class="card">
+        <div class="photo">
+            <img src="/foto/daniele.jpg" alt="Foto di Daniele Di Rollo">
+        </div>
+        <div class="info">
+            <h1>Daniele Di Rollo</h1>
+            <p>Telefono: <a href="tel:+393391717172">+39 339 1717172</a></p>
+            <p>Email: <a href="mailto:daniele.dirollo@gmail.com">daniele.dirollo@gmail.com</a></p>
+            <button onclick="saveContact()">Salva Contatto</button>
+        </div>
+    </div>
+
+    <script>
+        function saveContact() {
+            const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN:Daniele Di Rollo
+EMAIL:daniele.dirollo@gmail.com
+TEL:+393391717172
+PHOTO;ENCODING=b;TYPE=JPEG:/foto/daniele.jpg
+END:VCARD`;
+
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Daniele_Di_Rollo.vcf';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
